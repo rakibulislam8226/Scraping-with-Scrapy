@@ -18,9 +18,9 @@ class QuotesSpider(scrapy.Spider):
             author = (selector.css(".author::text").extract_first(),)
             tags = (selector.css(".tag::text").extract(),)
 
-            items["Text"] = text
-            items["Author"] = author
-            items["Tags"] = tags
+            items["text"] = text
+            items["author"] = author
+            items["tags"] = tags
 
             yield items
 
