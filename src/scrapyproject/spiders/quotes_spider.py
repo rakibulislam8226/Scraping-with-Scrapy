@@ -5,11 +5,12 @@ from ..items.quotes_spider import QuotesSpiderItem
 
 class QuotesSpider(scrapy.Spider):
     name = "quotes"
-    custom_settings = {
-        "ITEM_PIPELINES": {
-            "scrapyproject.pipelines.QuotesPipelineWithSqlite": 300,  # Pipelines for quotes spider with Sqlite3
-        }
-    }
+    # NOTE: custom setting for pipelines but now am use default setting in setting.py
+    # custom_settings = {
+    #     "ITEM_PIPELINES": {
+    #         "scrapyproject.pipelines.QuotesPipelineWithSqlite": 300,  # Pipelines for quotes spider with Sqlite3
+    #     }
+    # }
 
     def start_requests(self):
         URL = "https://quotes.toscrape.com/"

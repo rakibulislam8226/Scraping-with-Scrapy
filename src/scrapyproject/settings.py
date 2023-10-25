@@ -63,11 +63,10 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # I used separate pipelines setting for this project purpose. Because I used different database for different spider.
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-# ITEM_PIPELINES = {
-#     # Defining different databases for different spiders.
-#     "scrapyproject.pipelines.QuotesPipelineWithSqlite": 300,  # Pipelines for quotes spider with Sqlite3
-#     "scrapyproject.pipelines.BooksPipelineWithMySQL": 300,  # Pipelines for books spider with MySQL database
-# }
+ITEM_PIPELINES = {
+    # If you want to use different pipelines the use custom setting in every spiders.
+    "scrapyproject.pipelines.ScrapyprojectPipelineWithSqlite": 300,  # Pipelines for all the spider with Sqlite3
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
