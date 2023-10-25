@@ -1,9 +1,8 @@
 import sqlite3
 
 
-class ScrapyprojectPipeline(object):
+class QuotesPipelineWithSqlite(object):
     def __init__(self) -> None:
-        print("------------------------------")
         self.create_connection()
         self.create_table()
 
@@ -22,7 +21,6 @@ class ScrapyprojectPipeline(object):
         )
 
     def process_item(self, item, spider):
-        print("=======================================================")
         self.store_db(item)
         return item
 

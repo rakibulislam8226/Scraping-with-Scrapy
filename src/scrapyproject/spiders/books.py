@@ -3,6 +3,11 @@ import scrapy
 
 class BooksSpider(scrapy.Spider):
     name = "books"
+    custom_settings = {
+        "ITEM_PIPELINES": {
+            "scrapyproject.pipelines.BooksPipelineWithMySQL": 300,  # Pipelines for books spider with MySQL database
+        }
+    }
 
     def start_requests(self):
         URL = "https://books.toscrape.com/"
