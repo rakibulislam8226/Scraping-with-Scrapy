@@ -53,11 +53,7 @@ class ScrapyprojectPipelineWithSqlite(object):
 
     def store_books(self, item):
         print("===== books executing")
-        stock = (
-            " ".join([x.strip() for x in item["stock"] if isinstance(x, str)])
-            if item["stock"]
-            else ""
-        )
+        stock_text = "".join(item["stock"][0]).strip()
         self.curr.execute(
             """insert into books_db values (?,?,?,?,?)""",
             (
@@ -65,7 +61,7 @@ class ScrapyprojectPipelineWithSqlite(object):
                 item["image_alt"][0],
                 item["title"][0],
                 item["price"][0],
-                stock,
+                stock_text,
             ),
         )
         self.conn.commit()
