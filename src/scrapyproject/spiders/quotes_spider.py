@@ -1,22 +1,24 @@
 import scrapy
 
+from scrapy.http import FormRequest
+from scrapy.utils.response import open_in_browser
+
 from ..items.quotes_spider import QuotesSpiderItem
 
 
 class QuotesSpider(scrapy.Spider):
     name = "quotes"
-    # NOTE: custom setting for pipelines but now am use default setting in setting.py
-    # custom_settings = {
-    #     "ITEM_PIPELINES": {
-    #         "scrapyproject.pipelines.QuotesPipelineWithSqlite": 300,  # Pipelines for quotes spider with Sqlite3
-    #     }
-    # }
 
     def start_requests(self):
-        URL = "https://quotes.toscrape.com/"
-        yield scrapy.Request(url=URL, callback=self.response_parser)
+        URL = "https://quotes.toscrape.com/login"
+        yield FormRequest(
+            URL,
+            formdata={"username": "example@gmail.com", "password": "rakib123"},
+            callback=self.response_parser,
+        )
 
     def response_parser(self, response):
+        # open_in_browser(response)
         items = QuotesSpiderItem()
 
         for selector in response.css(".quote"):
